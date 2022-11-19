@@ -1,9 +1,18 @@
 import { useState } from "react";
 
-const FilterBar = ({ beds, onBedsFilter, baths, onBathsFilter }) => {
+const FilterBar = ({
+  beds,
+  onBedsFilter,
+  baths,
+  onBathsFilter,
+  onStateFilter,
+  onCityFilter,
+}) => {
   const [filters, setFilters] = useState({
     beds: "",
     baths: "",
+    state: "",
+    city: "",
   });
 
   const handleInput = (field) => (event) => {
@@ -21,13 +30,19 @@ const FilterBar = ({ beds, onBedsFilter, baths, onBathsFilter }) => {
       case "baths":
         onBathsFilter(value);
         break;
+      case "state":
+        onStateFilter(value);
+        break;
+      case "city":
+        onCityFilter(value);
+        break;
       default:
         break;
     }
   };
 
   return (
-    <div className="flex items-center justify-items-center justify-center gap-16 bg-[#123795] p-8 m-8 rounded-xl  text-white">
+    <div className="flex flex-col lg:flex-row items-center justify-items-center justify-center gap-16 bg-[#123795]  p-4 m-4 sm:p-8 sm:m-8 rounded-xl  text-white">
       <div>
         <h4>Filters</h4>
       </div>
@@ -60,6 +75,24 @@ const FilterBar = ({ beds, onBedsFilter, baths, onBathsFilter }) => {
             </option>
           ))}
         </select>
+      </div>
+      <div className="flex gap-4 justify-center items-center justify-items-center">
+        <label htmlFor="name">Enter the State Initials</label>
+        <input
+          type="text"
+          className="form-control text-black"
+          id="state"
+          onChange={handleInput("state")}
+        />
+      </div>
+      <div className="flex gap-4 justify-center items-center justify-items-center">
+        <label htmlFor="name">Enter the City</label>
+        <input
+          type="text"
+          className="form-control text-black"
+          id="city"
+          onChange={handleInput("city")}
+        />
       </div>
     </div>
   );

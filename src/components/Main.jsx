@@ -43,6 +43,28 @@ const Main = () => {
     setData(filteredData);
   };
 
+  const handleFilterState = (address) => {
+    const filteredData = data.filter((item) => {
+      const stateInAddress = `${item.address}`;
+      if (stateInAddress.toLowerCase().includes(address.toLowerCase())) {
+        return item;
+      }
+    });
+
+    setData(filteredData);
+  };
+
+  const handleFilterCity = (address) => {
+    const filteredData = data.filter((item) => {
+      const stateInAddress = `${item.address}`;
+      if (stateInAddress.includes(address)) {
+        return item;
+      }
+    });
+
+    setData(filteredData);
+  };
+
   return (
     <>
       <FilterBar
@@ -50,6 +72,8 @@ const Main = () => {
         onBedsFilter={handleFilterBeds}
         baths={generatebathroomsDataForDropdown()}
         onBathsFilter={handleFilterBaths}
+        onStateFilter={handleFilterState}
+        onCityFilter={handleFilterCity}
       />
       <Property data={currentPosts} />
       <Pagination

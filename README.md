@@ -2,4 +2,4 @@
 
 ### Tech Stack: ReactJS with TailwindCSS.
 
-### Features: Has features: paginations, filters for beds and bathrooms
+### Features: Has features: paginations, filters for beds,bathrooms,states and city

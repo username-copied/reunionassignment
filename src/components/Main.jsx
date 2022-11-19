@@ -3,6 +3,7 @@ import { data } from "../sample_data";
 import "animate.css";
 import Pagination from "./Pagination";
 import Property from "./Property";
+import FilterBar from "./FilterBar";
 
 const Main = () => {
   //States and variables for pagination
@@ -26,6 +27,7 @@ const Main = () => {
 
   return (
     <>
+      {/* <FilterBar /> */}
       <Property data={currentPosts} />
       <Pagination
         postsPerPage={postsPerPage}

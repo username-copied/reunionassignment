@@ -1,18 +1,9 @@
 import { useState } from "react";
 
-const FilterBar = ({
-  genders,
-  onNameFilter,
-  onEmailFilter,
-  onGenderFilter,
-  onDateFilter,
-}) => {
+const FilterBar = ({ beds, onBedsFilter, baths, onBathsFilter }) => {
   const [filters, setFilters] = useState({
-    name: "",
-    email: "",
-    gender: "",
-    from: "",
-    to: "",
+    beds: "",
+    baths: "",
   });
 
   const handleInput = (field) => (event) => {
@@ -24,19 +15,11 @@ const FilterBar = ({
     });
 
     switch (field) {
-      case "name":
-        onNameFilter(value);
+      case "beds":
+        onBedsFilter(value);
         break;
-      case "email":
-        onEmailFilter(value);
-        break;
-      case "gender":
-        onGenderFilter(value);
-        break;
-      case "from":
-        onDateFilter(value, "from");
-        break;
-      case "to":
+      case "baths":
+        onBathsFilter(value);
         break;
       default:
         break;
@@ -44,64 +27,39 @@ const FilterBar = ({
   };
 
   return (
-    <div className="row my-5">
-      <div className="col">
-        <h4 className="border-bottom">Filters</h4>
+    <div className="flex items-center justify-items-center justify-center gap-16 bg-[#123795] p-8 m-8 rounded-xl  text-white">
+      <div>
+        <h4>Filters</h4>
       </div>
-      <div className="col-sm-12 my-2">
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          className="form-control"
-          id="name"
-          value={filters.name}
-          onChange={handleInput("name")}
-        />
-      </div>
-
-      <div className="col-sm-12 my-2">
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          className="form-control"
-          id="email"
-          onChange={handleInput("email")}
-        />
-      </div>
-
-      <div className="col-sm-12 my-2">
-        <label htmlFor="gender">Gender</label>
+      <div className="flex gap-4 justify-center items-center justify-items-center">
+        <label>No of Beds</label>
         <select
-          className="form-control"
-          id="gender"
-          onChange={handleInput("gender")}
+          className="form-control text-black"
+          id="beds"
+          onChange={handleInput("beds")}
         >
           <option value="">Select</option>
-          {genders.map((gender) => (
-            <option value={gender} key={gender}>
-              {gender}
+          {beds.map((beds) => (
+            <option value={beds} key={beds}>
+              {beds}
             </option>
           ))}
         </select>
       </div>
-
-      <div className="col-sm-12 my-2">
-        <label htmlFor="startDate">From</label>
-        <input
-          type="date"
-          className="form-control"
-          id="startDate"
-          onChange={handleInput("from")}
-        />
-      </div>
-      <div className="col-sm-12 my-2">
-        <label htmlFor="endDate">To</label>
-        <input
-          type="date"
-          className="form-control"
-          id="endDate"
-          onChange={handleInput("to")}
-        />
+      <div className="flex gap-4 justify-center items-center justify-items-center">
+        <label>No of Bathrooms</label>
+        <select
+          className="form-control text-black"
+          id="beds"
+          onChange={handleInput("baths")}
+        >
+          <option value="">Select</option>
+          {baths.map((baths) => (
+            <option value={baths} key={baths}>
+              {baths}
+            </option>
+          ))}
+        </select>
       </div>
     </div>
   );

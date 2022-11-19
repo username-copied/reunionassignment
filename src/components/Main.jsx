@@ -6,12 +6,13 @@ import Property from "./Property";
 import FilterBar from "./FilterBar";
 
 const Main = () => {
+  const [allData, setData] = useState(data);
   //States and variables for pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(9);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = allData.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   //Functions for filters:
@@ -22,12 +23,34 @@ const Main = () => {
     return [...new Set(data.map((item) => item.baths))];
   };
 
-  console.log(generateBedsDataForDropdown());
-  console.log("bathroom", generatebathroomsDataForDropdown());
+  const handleFilterBeds = (beds) => {
+    const filteredData = data.filter((item) => {
+      if (item.beds === beds) {
+        return item;
+      }
+    });
+
+    setData(filteredData);
+  };
+
+  const handleFilterBaths = (baths) => {
+    const filteredData = data.filter((item) => {
+      if (item.baths === baths) {
+        return item;
+      }
+    });
+
+    setData(filteredData);
+  };
 
   return (
     <>
-      {/* <FilterBar /> */}
+      <FilterBar
+        beds={generateBedsDataForDropdown()}
+        onBedsFilter={handleFilterBeds}
+        baths={generatebathroomsDataForDropdown()}
+        onBathsFilter={handleFilterBaths}
+      />
       <Property data={currentPosts} />
       <Pagination
         postsPerPage={postsPerPage}

@@ -46,7 +46,7 @@ const Main = () => {
   const handleFilterState = (address) => {
     const filteredData = data.filter((item) => {
       const stateInAddress = `${item.address}`;
-      if (stateInAddress.toLowerCase().includes(address.toLowerCase())) {
+      if (stateInAddress.includes(address)) {
         return item;
       }
     });
@@ -57,7 +57,7 @@ const Main = () => {
   const handleFilterCity = (address) => {
     const filteredData = data.filter((item) => {
       const stateInAddress = `${item.address}`;
-      if (stateInAddress.includes(address)) {
+      if (stateInAddress.toLowerCase().includes(address.toLowerCase())) {
         return item;
       }
     });
